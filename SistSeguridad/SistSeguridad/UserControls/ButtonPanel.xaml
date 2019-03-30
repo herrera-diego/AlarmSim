@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SistSeguridad.UserControls.Display"
+﻿<UserControl x:Class="SistSeguridad.UserControls.ButtonPanel"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -6,11 +6,7 @@
              xmlns:local="clr-namespace:SistSeguridad.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="360" Width="550">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="73*"/>
-            <RowDefinition Height="7*"/>
-        </Grid.RowDefinitions>
+    <Grid MaxHeight="360" MaxWidth="550">
         <Button Content="1" HorizontalAlignment="Left" Margin="20,30,0,0" VerticalAlignment="Top" Width="70" Height="60" FontSize="36" FontFamily="Tahoma" FontWeight="Bold"/>
         <Button Content="2" HorizontalAlignment="Left" Margin="120,30,0,0" VerticalAlignment="Top" Width="70" Height="60" FontSize="36" FontFamily="Tahoma" FontWeight="Bold"/>
         <Button Content="3" HorizontalAlignment="Left" Margin="220,30,0,0" VerticalAlignment="Top" Width="70" Height="60" FontSize="36" FontFamily="Tahoma" FontWeight="Bold"/>

@@ -3,10 +3,16 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:uc="clr-namespace:SistSeguridad.UserControls"
         xmlns:local="clr-namespace:SistSeguridad"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid>
-        
+        Title="MainWindow" Height="450" Width="1000">
+    <Grid Background="Gray">
+        <uc:Display HorizontalAlignment="Left" Margin="100,50,0,205" Width="300" ></uc:Display>
+        <uc:ButtonPanel HorizontalAlignment="Right" Margin="0,0,0,0"></uc:ButtonPanel>
+        <uc:LedControl Margin="120,220,780,100"></uc:LedControl>
+        <uc:LedControl Margin="280,220,620,100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="120,320,0,0" FontSize="22" TextWrapping="Wrap" TextAlignment="Center" Text="Batería" VerticalAlignment="Top" Height="36" Width="100"/>
+        <TextBlock HorizontalAlignment="Left" Margin="280,320,0,0" FontSize="22" TextWrapping="Wrap" TextAlignment="Center" Text="Armada" VerticalAlignment="Top" Height="36" Width="100"/>
     </Grid>
 </Window>

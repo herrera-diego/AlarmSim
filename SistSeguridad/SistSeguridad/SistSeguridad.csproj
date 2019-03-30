@@ -68,6 +68,9 @@
     <Compile Include="UserControls\Display.xaml.cs">
       <DependentUpon>Display.xaml</DependentUpon>
     </Compile>
+    <Compile Include="UserControls\LedControl.xaml.cs">
+      <DependentUpon>LedControl.xaml</DependentUpon>
+    </Compile>
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -85,6 +88,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="UserControls\Display.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="UserControls\LedControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
