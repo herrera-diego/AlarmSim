@@ -62,6 +62,8 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DataHandling\Memory.cs" />
+    <Compile Include="TaskScheduling\Scheduler.cs" />
     <Compile Include="UserControls\ButtonPanel.xaml.cs">
       <DependentUpon>ButtonPanel.xaml</DependentUpon>
     </Compile>

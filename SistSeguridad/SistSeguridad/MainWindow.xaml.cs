@@ -12,6 +12,10 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using SistSeguridad.TaskScheduling;
+using SistSeguridad.UserControls;
+using SistSeguridad.DataHandling;
+using System.Threading;
 
 namespace SistSeguridad
 {
@@ -23,6 +27,21 @@ namespace SistSeguridad
         public MainWindow()
         {
             InitializeComponent();
+
+            Scheduler MainScheduler = new Scheduler();
+            Memory MainMemory = new Memory();
+
+            MainScheduler.SystemMemory = MainMemory;
+            SystemButtonPanel.SharedMemory = MainMemory;
+            SystemDisplay.SharedMemory = MainMemory;
+
+            MainScheduler.SystemButtonPanel = SystemButtonPanel;
+            MainScheduler.SystemDisplay = SystemDisplay;
+            MainScheduler.ArmedIndicator = ArmadaLED;
+            MainScheduler.BatteryIndicator = BateriaLED;
+
+            MainScheduler.CheckButtonsAsync();
+            //polling.Wait();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistSeguridad.DataHandling;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,67 @@ namespace SistSeguridad.UserControls
         public ButtonPanel()
         {
             InitializeComponent();
+        }
+
+
+        public Memory SharedMemory
+        {
+            get;set;
+        }
+
+        public bool Enter
+        {
+            get;set;
+        }
+
+        public bool Escape
+        {
+            get; set;
+        }
+
+        public bool Panic
+        {
+            get; set;
+        }
+
+        public bool Fire
+        {
+            get; set;
+        }
+
+        public bool ButtonPressed
+        {
+            get; set;
+        }
+
+        private void Number_Click(object sender, RoutedEventArgs e)
+        {
+            var source = e.OriginalSource as Button;
+
+            if (source == null)
+                return;
+
+            SharedMemory.CurrentMessage += source.Content;
+            ButtonPressed = true;
+        }
+
+        private void Enter_Click(object sender, RoutedEventArgs e)
+        {
+            Enter = true;
+        }
+
+        private void Escape_Click(object sender, RoutedEventArgs e)
+        {
+            Escape = true;
+        }
+
+        private void Panic_Click(object sender, RoutedEventArgs e)
+        {
+            Panic = true;
+        }
+        private void Fire_Click(object sender, RoutedEventArgs e)
+        {
+            Fire = true;
         }
     }
 }

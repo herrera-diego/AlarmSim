@@ -1,17 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
+﻿using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace SistSeguridad.UserControls
 {
@@ -20,9 +9,36 @@ namespace SistSeguridad.UserControls
     /// </summary>
     public partial class LedControl : UserControl
     {
+        private bool _enableStatus = false;
+
         public LedControl()
         {
             InitializeComponent();
+        }
+
+
+        public void LedOn()
+        {
+            RadialGradientBrush brush = new RadialGradientBrush(new GradientStopCollection
+                    {
+                        new GradientStop(Color.FromRgb(0,128,0),0.2),
+                        new GradientStop(Color.FromRgb(173,255,47),0.8)
+
+                    });
+
+            Bulb.Fill = brush;
+        }
+
+        public void LedOff()
+        {
+            RadialGradientBrush brush = new RadialGradientBrush(new GradientStopCollection
+                    {
+                        new GradientStop(Color.FromRgb(0,128,0),0.4),
+                        new GradientStop(Color.FromRgb(173,255,47),0)
+
+                    });
+
+            Bulb.Fill = brush;
         }
     }
 }

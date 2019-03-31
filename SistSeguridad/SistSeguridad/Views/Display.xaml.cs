@@ -1,5 +1,4 @@
-﻿using SistSeguridad.DataHandling;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SistSeguridad.UserControls
+namespace SistSeguridad.Views
 {
     /// <summary>
     /// Interaction logic for Display.xaml
@@ -24,22 +23,6 @@ namespace SistSeguridad.UserControls
         public Display()
         {
             InitializeComponent();
-            ClearDisplay();
-        }
-
-        public Memory SharedMemory
-        {
-            get;set;
-        }
-
-        public void ShowOnDisplay()
-        {
-            MainDisplay.Text = SharedMemory.CurrentMessage; 
-        }
-
-        public void ClearDisplay()
-        {
-            MainDisplay.Text = string.Empty;
         }
     }
 }
