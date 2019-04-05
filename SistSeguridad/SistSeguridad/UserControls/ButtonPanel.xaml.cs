@@ -57,7 +57,7 @@ namespace SistSeguridad.UserControls
             get; set;
         }
 
-        private void Number_Click(object sender, RoutedEventArgs e)
+        private void NumberClick(object sender, RoutedEventArgs e)
         {
             var source = e.OriginalSource as Button;
 
@@ -68,21 +68,21 @@ namespace SistSeguridad.UserControls
             ButtonPressed = true;
         }
 
-        private void Enter_Click(object sender, RoutedEventArgs e)
+        private void EnterClick(object sender, RoutedEventArgs e)
         {
             Enter = true;
         }
 
-        private void Escape_Click(object sender, RoutedEventArgs e)
+        private void EscapeClick(object sender, RoutedEventArgs e)
         {
             Escape = true;
         }
 
-        private void Panic_Click(object sender, RoutedEventArgs e)
+        private void PanicClick(object sender, RoutedEventArgs e)
         {
             Panic = true;
         }
-        private void Fire_Click(object sender, RoutedEventArgs e)
+        private void FireClick(object sender, RoutedEventArgs e)
         {
             Fire = true;
         }

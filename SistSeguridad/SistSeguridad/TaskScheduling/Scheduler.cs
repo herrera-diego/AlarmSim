@@ -1,4 +1,5 @@
 ﻿using SistSeguridad.DataHandling;
+using SistSeguridad.Simulator;
 using SistSeguridad.UserControls;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,10 @@ namespace SistSeguridad.TaskScheduling
     public class Scheduler
     {
 
+        public string Mode
+        {
+            get;set;
+        }
         public Memory SystemMemory
         {
             get;set;
@@ -40,7 +45,7 @@ namespace SistSeguridad.TaskScheduling
             get; set;
         }
 
-        public bool Mode0Sequence(string sequence)
+        public bool ValidateArmedSequence(string sequence)
         {
             string strRegex = @"^\d{4}\*";
             Regex myRegex = new Regex(strRegex, RegexOptions.None);
@@ -54,24 +59,60 @@ namespace SistSeguridad.TaskScheduling
             }
 
             return false;
-        }
+        }  
 
-        public bool Mode1Sequence(string sequence)
+        public void Disarm()
         {
-            string strRegex = @"^\d{4}\#";
-            Regex myRegex = new Regex(strRegex, RegexOptions.None);
 
-            foreach (Match myMatch in myRegex.Matches(sequence))
-            {
-                if (myMatch.Success)
-                {
-                    return true;
-                }
-            }
+        }
+        
 
-            return false;
+
+        public void ChangePassword(string sequence)
+        {
+
         }
 
+        public delegate void SensorAlarm(Sensor sensor);
+        public delegate void FireAlarm();
+        public delegate void BatteryAlarm();
+        public delegate void PanicAlarm();
+        public delegate void DamageAlarm();
+
+        public event SensorAlarm SensorEvent;     
+        public event BatteryAlarm BatteryEvent;       
+        public event PanicAlarm PanicEvent;     
+        public event FireAlarm FireEvent;
+        public event DamageAlarm DamageEvent;
+
+        public void ProcessSensorAlarm(Sensor sensor)
+        {
+
+        }
+
+        public  void ProcessBatteryAlarm()
+        {
+
+        }
+
+        public void ProcessFireAlarm()
+        {
+
+        }
+        public void ProcessPanicAlarm()
+        {
+
+        }
+
+        public void ProcessDamageAlarm()
+        {
+
+        }
+
+        public void StartTimer(int time)
+        {
+
+        }
 
         private void ExecUIMethod(Action method)
         {
@@ -90,13 +131,13 @@ namespace SistSeguridad.TaskScheduling
 
                     if(SystemButtonPanel.Escape)
                     {
-                        ExecUIMethod(SystemDisplay.ClearDisplay);
+                        ExecUIMethod(SystemDisplay.Clear);
                         SystemMemory.Clear();
                         SystemButtonPanel.Escape = false;
                     }
                     else if (SystemButtonPanel.Enter)
                     {
-                        if (Mode0Sequence(SystemMemory.CurrentMessage)|| Mode0Sequence(SystemMemory.CurrentMessage))
+                        if (ValidateArmedSequence(SystemMemory.CurrentMessage))
                         {
                             ExecUIMethod(ArmedIndicator.LedOn);
                         }
@@ -105,7 +146,7 @@ namespace SistSeguridad.TaskScheduling
                     }
                     else if (SystemButtonPanel.ButtonPressed)
                     {                                                                 
-                        ExecUIMethod(SystemDisplay.ShowOnDisplay);
+                        ExecUIMethod(SystemDisplay.Show);
 
                         SystemButtonPanel.ButtonPressed = false;
                     }

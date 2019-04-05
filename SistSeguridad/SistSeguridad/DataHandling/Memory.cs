@@ -8,17 +8,47 @@ namespace SistSeguridad.DataHandling
 {
     public class Memory
     {
+        public bool Updated
+        {
+            get; set;
+        }
+
         public string CurrentMessage
         {
             get;
             set;
         }
 
-        public bool Updated
+        public string UserNumber
+        {
+            set; get;
+        }
+
+        public string CompanyPhoneNumber
         {
             get;set;
         }
 
+        public bool Fire
+        {
+            get;set;
+        }
+
+        public bool Panic
+        {
+            get;set;
+        }
+
+        public bool Password
+        {
+            get; set;
+        }
+
+        public string DefaultPassword
+        {
+            get;
+            set;
+        }
         public void Clear()
         {
             CurrentMessage = string.Empty;

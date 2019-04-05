@@ -6,13 +6,14 @@
              xmlns:local="clr-namespace:SistSeguridad.UserControls"
              xmlns:syncfusion="http://schemas.syncfusion.com/wpf" x:Class="SistSeguridad.UserControls.Display"
              mc:Ignorable="d" 
-             d:DesignHeight="150" d:DesignWidth="300">
-    <Grid Background="#FFE6DCDC" MaxHeight="150" MaxWidth="300">
-        <TextBlock x:Name="MainDisplay" HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Center" Height="80" Width="180" FontSize="56" TextAlignment="Center"/>
-        <TextBlock HorizontalAlignment="Left" Margin="215,30,0,0" TextWrapping="Wrap" Text="Armada" VerticalAlignment="Top" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="215,55,0,0" TextWrapping="Wrap" Text="Alarma" VerticalAlignment="Top" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="215,80,0,0" TextWrapping="Wrap" Text="Batería" VerticalAlignment="Top" FontSize="16"/>
-        <TextBlock HorizontalAlignment="Left" Margin="215,105,0,0" TextWrapping="Wrap" Text="Error" VerticalAlignment="Top"  FontSize="16"/>
-        <Border BorderBrush="Black" BorderThickness="2" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" Width="300"/>
-    </Grid>
+             d:DesignHeight="150" d:DesignWidth="320">
+    <Border BorderBrush="DarkGray" BorderThickness="10" Background="#FFE6DCDC" CornerRadius="15" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" Width="320">
+        <Grid  MaxHeight="150" MaxWidth="320">
+            <TextBlock x:Name="MainDisplay"  HorizontalAlignment="Left" Margin="20,0,0,0" TextWrapping="Wrap" Text="1234" VerticalAlignment="Center" Height="80" Width="180" FontSize="56" TextAlignment="Center" FontFamily="OCR A Extended"/>
+            <TextBlock HorizontalAlignment="Left" Margin="215,30,0,0" TextWrapping="Wrap" Text="Armada" VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
+            <TextBlock HorizontalAlignment="Left" Margin="215,55,0,0" TextWrapping="Wrap" Text="Alarma" VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
+            <TextBlock HorizontalAlignment="Left" Margin="215,80,0,0" TextWrapping="Wrap" Text="Batería" VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
+            <TextBlock HorizontalAlignment="Left" Margin="215,105,0,0" TextWrapping="Wrap" Text="Error" VerticalAlignment="Top"  FontSize="16" FontFamily="OCR A Extended"/>
+        </Grid>
+    </Border>
 </UserControl>

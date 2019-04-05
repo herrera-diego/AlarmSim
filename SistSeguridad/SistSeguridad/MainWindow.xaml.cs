@@ -16,6 +16,7 @@ using SistSeguridad.TaskScheduling;
 using SistSeguridad.UserControls;
 using SistSeguridad.DataHandling;
 using System.Threading;
+using SistSeguridad.Simulator;
 
 namespace SistSeguridad
 {
@@ -42,6 +43,24 @@ namespace SistSeguridad
 
             MainScheduler.CheckButtonsAsync();
             //polling.Wait();
+        }
+
+        private void Grid_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyboardDevice.Modifiers == ModifierKeys.Control)
+            {
+                switch (e.Key)
+                {
+                    case Key.S:
+                        AlarmSimulator simulator = new AlarmSimulator();
+                        simulator.Show();
+                        break;
+                    // Other cases ...
+                    default:
+                        break;
+                }
+            }
+            
         }
     }
 }

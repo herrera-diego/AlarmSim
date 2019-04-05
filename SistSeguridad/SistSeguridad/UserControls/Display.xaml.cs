@@ -24,7 +24,7 @@ namespace SistSeguridad.UserControls
         public Display()
         {
             InitializeComponent();
-            ClearDisplay();
+            Clear();
         }
 
         public Memory SharedMemory
@@ -32,12 +32,17 @@ namespace SistSeguridad.UserControls
             get;set;
         }
 
-        public void ShowOnDisplay()
+        public void Show()
         {
             MainDisplay.Text = SharedMemory.CurrentMessage; 
         }
 
-        public void ClearDisplay()
+        public void LightUp()
+        {
+            MainDisplay.Text = SharedMemory.CurrentMessage;
+        }
+
+        public void Clear()
         {
             MainDisplay.Text = string.Empty;
         }
