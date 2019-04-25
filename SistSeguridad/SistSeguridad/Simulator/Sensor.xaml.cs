@@ -26,6 +26,7 @@ namespace SistSeguridad.Simulator
             DataContext = this;
             Zona0.IsChecked = true;
             Zona1.IsChecked = false;
+            Zone = 0;
         }
 
         public event EventHandler<AlarmEventArgs> AlarmActivated;
@@ -41,10 +42,7 @@ namespace SistSeguridad.Simulator
             get;set;
         }
 
-        public bool Alarm
-        {
-            get;set;
-        }
+
 
 
         public static readonly DependencyProperty TextBlockTextProperty =
@@ -52,19 +50,31 @@ namespace SistSeguridad.Simulator
 
         private void AlarmStatus_Checked(object sender, RoutedEventArgs e)
         {
-            if (AlarmActivated != null)
+            AlarmActivated?.Invoke(this, new AlarmEventArgs(SensorName, Zone));
+        }
+
+        private void OnChecked(object sender, RoutedEventArgs e)
+        {
+            if(Zona0.IsChecked == true)
             {
-                AlarmActivated(this, new AlarmEventArgs(SensorName));
+                Zone = 0;
+            }
+            else if(Zona1.IsChecked == true)
+            {
+                Zone = 1;
             }
         }
     }
     public class AlarmEventArgs : EventArgs
     {
-        public AlarmEventArgs(string name)
+        public AlarmEventArgs(string name, int zone)
         {
             Name = name;
+            Zone = zone;
         }
 
         public string Name { get; set; }
+        public int Zone { get; set; }
+
     }
 }

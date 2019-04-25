@@ -25,12 +25,15 @@ namespace SistSeguridad
     /// </summary>
     public partial class MainWindow : Window
     {
+        private Scheduler MainScheduler;
+        private Memory MainMemory;
+
         public MainWindow()
         {
             InitializeComponent();
 
-            Scheduler MainScheduler = new Scheduler();
-            Memory MainMemory = new Memory();
+            MainScheduler = new Scheduler();
+            MainMemory = new Memory();
 
             MainScheduler.SystemMemory = MainMemory;
             SystemButtonPanel.SharedMemory = MainMemory;
@@ -52,6 +55,7 @@ namespace SistSeguridad
                 {
                     case Key.S:
                         AlarmSimulator simulator = new AlarmSimulator();
+                        simulator.AlarmActivated += MainScheduler.ProcessSensorAlarm;
                         simulator.Show();
                         break;
                     // Other cases ...

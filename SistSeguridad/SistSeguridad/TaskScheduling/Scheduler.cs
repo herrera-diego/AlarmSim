@@ -108,20 +108,12 @@ namespace SistSeguridad.TaskScheduling
             }
         }
 
-        public delegate void SensorAlarm(Sensor sensor);
-        public delegate void FireAlarm();
-        public delegate void BatteryAlarm();
-        public delegate void PanicAlarm();
-        public delegate void DamageAlarm();
-
-        public event EventHandler<AlarmEventArgs> SensorEvent;     
-        public event BatteryAlarm BatteryEvent;       
-        public event PanicAlarm PanicEvent;     
-        public event FireAlarm FireEvent;
-        public event DamageAlarm DamageEvent;
-
-        public void ProcessSensorAlarm(Sensor sensor)
+        public void ProcessSensorAlarm(object sender, AlarmEventArgs e)
         {
+            if ((Mode == "0") || (Mode == e.Zone.ToString()))
+            {
+                ExecUIMethod(SystemDisplay.EnableAlarm);
+            }
 
         }
 
@@ -223,6 +215,7 @@ namespace SistSeguridad.TaskScheduling
                             {
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
+                                ExecUIMethod(SystemDisplay.DisableAlarm);
                             }
 
                             SystemMemory.Clear();

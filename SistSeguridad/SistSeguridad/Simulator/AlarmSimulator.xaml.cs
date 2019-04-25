@@ -25,9 +25,11 @@ namespace SistSeguridad.Simulator
             Sensor0.Zona1.Visibility = Visibility.Hidden;
         }
 
+        public event EventHandler<AlarmEventArgs> AlarmActivated;
+
         private void OnAlarmActivated(object sender, AlarmEventArgs e)
         {
-
+            AlarmActivated?.Invoke(this, e);
         }
     }
 }
