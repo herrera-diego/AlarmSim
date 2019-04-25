@@ -19,6 +19,7 @@ namespace SistSeguridad.TaskScheduling
         private long FireTimer;
 
         private bool ChangePass;
+        private bool ConfirmPass;
 
         private bool BatteryControl;
 
@@ -98,8 +99,9 @@ namespace SistSeguridad.TaskScheduling
         
 
 
-        public void ChangePassword(string sequence)
+        public string ChangePassword(string sequence)
         {
+            string tempPass = null;
             string strRegex = @"^\d{4}$";
             Regex myRegex = new Regex(strRegex, RegexOptions.None);
 
@@ -107,9 +109,12 @@ namespace SistSeguridad.TaskScheduling
             {
                 if (myMatch.Success)
                 {
-                    SystemMemory.Password = sequence;
+                    tempPass = sequence;
+                    break;
                 }
             }
+
+            return tempPass;
         }
 
         public void ProcessSensorAlarm(object sender, AlarmEventArgs e)
@@ -165,6 +170,8 @@ namespace SistSeguridad.TaskScheduling
 
         public async void CheckButtonsAsync()
         {
+            string tempPass = null;
+
             await Task.Run(() =>
             {
                 while (true)
@@ -178,6 +185,7 @@ namespace SistSeguridad.TaskScheduling
                         if(PanicTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            ExecUIMethod(SystemDisplay.DisableError);
                             AlarmTriggered = true;
                         }
                     }
@@ -188,23 +196,60 @@ namespace SistSeguridad.TaskScheduling
                         if (FireTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            ExecUIMethod(SystemDisplay.DisableError);
                             AlarmTriggered = true;
                         }
                     }
                     else if(SystemButtonPanel.Escape)
                     {
                         ExecUIMethod(SystemDisplay.Clear);
+                        ExecUIMethod(SystemDisplay.DisableError);
                         SystemMemory.Clear();
                         SystemButtonPanel.Escape = false;
+                        SystemButtonPanel.Enter = false;
+                        ChangePass = false;
+                        ConfirmPass = false;
                         PanicTimer = 0;
                         FireTimer = 0;
                     }
                     else if (SystemButtonPanel.Enter)
                     {
-                        if(ChangePass)
+                        SystemButtonPanel.Enter = false;
+                        ExecUIMethod(SystemDisplay.DisableError);
+                        if (ChangePass)
                         {
-                            ChangePassword(SystemMemory.CurrentMessage);
-                            ChangePass = false;
+                            if (!ConfirmPass)
+                            {
+                                tempPass = ChangePassword(SystemMemory.CurrentMessage);
+                                ExecUIMethod(SystemDisplay.Clear);
+
+                                if (string.IsNullOrEmpty(tempPass))
+                                {
+                                    ChangePass = false;                                   
+                                    ExecUIMethod(SystemDisplay.EnableError);
+                                }
+                                else
+                                {
+                                    ChangePass = true;
+                                    ConfirmPass = true;
+                                }
+                            }
+                            else
+                            {
+                                if(tempPass == SystemMemory.CurrentMessage)
+                                {
+                                    SystemMemory.Password = tempPass;
+                                    ExecUIMethod(SystemDisplay.Clear);
+                                }
+                                else
+                                {
+                                    ExecUIMethod(SystemDisplay.Clear);
+                                    ExecUIMethod(SystemDisplay.EnableError);
+                                }
+
+                                ChangePass = false;
+                                ConfirmPass = false;
+                            }
                         }
                         else if(AlarmTriggered)
                         {
@@ -230,7 +275,6 @@ namespace SistSeguridad.TaskScheduling
                             }
                             
                             SystemMemory.Clear();
-                            SystemButtonPanel.Enter = false;
                             PanicTimer = 0;
                             FireTimer = 0;
                         }
@@ -245,9 +289,7 @@ namespace SistSeguridad.TaskScheduling
                             }
 
                             SystemMemory.Clear();
-                            SystemButtonPanel.Enter = false;
                             ExecUIMethod(SystemDisplay.Clear);
-                            SystemMemory.CurrentMessage = "";
                             PanicTimer = 0;
                             FireTimer = 0;
                         }

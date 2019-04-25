@@ -50,6 +50,10 @@ namespace SistSeguridad.UserControls
         public void Clear()
         {
             MainDisplay.Text = string.Empty;
+            if (SharedMemory != null)
+            {
+                SharedMemory.CurrentMessage = string.Empty;
+            }
         }
 
         public void EnableAlarm()
