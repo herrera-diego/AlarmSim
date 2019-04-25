@@ -28,6 +28,8 @@ namespace SistSeguridad.Simulator
             Zona1.IsChecked = false;
         }
 
+        public event EventHandler<AlarmEventArgs> AlarmActivated;
+
         public string SensorName
         {
             get { return (string)GetValue(TextBlockTextProperty); }
@@ -48,5 +50,21 @@ namespace SistSeguridad.Simulator
         public static readonly DependencyProperty TextBlockTextProperty =
             DependencyProperty.Register("SensorName", typeof(string), typeof(Sensor), new UIPropertyMetadata(""));
 
+        private void AlarmStatus_Checked(object sender, RoutedEventArgs e)
+        {
+            if (AlarmActivated != null)
+            {
+                AlarmActivated(this, new AlarmEventArgs(SensorName));
+            }
+        }
+    }
+    public class AlarmEventArgs : EventArgs
+    {
+        public AlarmEventArgs(string name)
+        {
+            Name = name;
+        }
+
+        public string Name { get; set; }
     }
 }

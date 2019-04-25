@@ -18,6 +18,8 @@ namespace SistSeguridad.TaskScheduling
         private long PanicTimer;
         private long FireTimer;
 
+        private bool ChangePass;
+
         public string Mode
         {
             get;set;
@@ -59,6 +61,12 @@ namespace SistSeguridad.TaskScheduling
                 Mode = "1";
                 return true;
             }
+            else if (string.Compare(sequence, SystemMemory.Password + "*#") == 0)
+            {
+                Mode = null;
+                ChangePass = true;
+                return false;
+            }
             else
             {
                 Mode = null;
@@ -88,7 +96,16 @@ namespace SistSeguridad.TaskScheduling
 
         public void ChangePassword(string sequence)
         {
+            string strRegex = @"^\d{4}$";
+            Regex myRegex = new Regex(strRegex, RegexOptions.None);
 
+            foreach (Match myMatch in myRegex.Matches(sequence))
+            {
+                if (myMatch.Success)
+                {
+                    SystemMemory.Password = sequence;
+                }
+            }
         }
 
         public delegate void SensorAlarm(Sensor sensor);
@@ -97,7 +114,7 @@ namespace SistSeguridad.TaskScheduling
         public delegate void PanicAlarm();
         public delegate void DamageAlarm();
 
-        public event SensorAlarm SensorEvent;     
+        public event EventHandler<AlarmEventArgs> SensorEvent;     
         public event BatteryAlarm BatteryEvent;       
         public event PanicAlarm PanicEvent;     
         public event FireAlarm FireEvent;
@@ -139,7 +156,7 @@ namespace SistSeguridad.TaskScheduling
                           new Action(() => method()));
         }
 
-        public async Task CheckButtonsAsync()
+        public async void CheckButtonsAsync()
         {
             await Task.Run(() =>
             {
@@ -149,6 +166,7 @@ namespace SistSeguridad.TaskScheduling
 
                     if (SystemButtonPanel.Panic)
                     {
+                        FireTimer = 0;
                         PanicTimer++;
                         if(PanicTimer >= 20)
                         {
@@ -158,6 +176,11 @@ namespace SistSeguridad.TaskScheduling
                     else if (SystemButtonPanel.Fire)
                     {
                         PanicTimer = 0;
+                        FireTimer++;
+                        if (FireTimer >= 20)
+                        {
+                            ExecUIMethod(SystemDisplay.EnableAlarm);
+                        }
                     }
                     else if(SystemButtonPanel.Escape)
                     {
@@ -169,7 +192,12 @@ namespace SistSeguridad.TaskScheduling
                     }
                     else if (SystemButtonPanel.Enter)
                     {
-                        if (string.IsNullOrEmpty(Mode))
+                        if(ChangePass)
+                        {
+                            ChangePassword(SystemMemory.CurrentMessage);
+                            ChangePass = false;
+                        }
+                        else if (string.IsNullOrEmpty(Mode))
                         {
                             if (ValidateArmedSequence(SystemMemory.CurrentMessage))
                             {

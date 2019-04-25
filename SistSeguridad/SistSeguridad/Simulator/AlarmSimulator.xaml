@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Simulator" Height="450" Width="900">
     <Grid Background="LightGray">
-        <local:Sensor x:Name="Sensor0" SensorName="Sensor 0" Margin="25,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
+        <local:Sensor x:Name="Sensor0" SensorName="Sensor 0" Margin="25,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor1" SensorName="Sensor 1" Margin="200,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <local:Sensor x:Name="Sensor2" SensorName="Sensor 2" Margin="375,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>
         <local:Sensor x:Name="Sensor3" SensorName="Sensor 3" Margin="550,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"/>

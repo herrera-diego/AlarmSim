@@ -22,6 +22,12 @@ namespace SistSeguridad.Simulator
         public AlarmSimulator()
         {
             InitializeComponent();
+            Sensor0.Zona1.Visibility = Visibility.Hidden;
+        }
+
+        private void OnAlarmActivated(object sender, AlarmEventArgs e)
+        {
+
         }
     }
 }

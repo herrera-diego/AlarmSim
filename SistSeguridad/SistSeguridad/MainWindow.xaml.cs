@@ -42,7 +42,6 @@ namespace SistSeguridad
             MainScheduler.BatteryIndicator = BateriaLED;
 
             MainScheduler.CheckButtonsAsync();
-            //polling.Wait();
         }
 
         private void Grid_KeyDown(object sender, KeyEventArgs e)
@@ -61,6 +60,11 @@ namespace SistSeguridad
                 }
             }
             
+        }
+
+        private void Grid_Loaded(object sender, RoutedEventArgs e)
+        {
+            MainGrid.Focus();
         }
     }
 }

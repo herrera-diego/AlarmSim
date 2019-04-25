@@ -9,7 +9,7 @@
              d:DesignHeight="150" d:DesignWidth="320">
     <Border BorderBrush="DarkGray" BorderThickness="10" Background="#FFE6DCDC" CornerRadius="15" HorizontalAlignment="Left" Height="150" Margin="0,0,0,0" VerticalAlignment="Top" Width="320">
         <Grid  MaxHeight="150" MaxWidth="320">
-            <TextBlock x:Name="MainDisplay"      HorizontalAlignment="Left" Margin="20,0,0,0"    TextWrapping="Wrap" Text="1234"    VerticalAlignment="Center" Height="80" Width="180" FontSize="44" TextAlignment="Center" FontFamily="OCR A Extended"/>
+            <TextBlock x:Name="MainDisplay"      HorizontalAlignment="Left" Margin="20,42,0,41"  TextWrapping="Wrap" Text="1234"    VerticalAlignment="Center" Height="47" Width="180" FontSize="44" TextAlignment="Center" FontFamily="OCR A Extended" RenderTransformOrigin="0.499,1.274"/>
             <TextBlock x:Name="ArmedIndicator"   HorizontalAlignment="Left" Margin="215,30,0,0"  TextWrapping="Wrap" Text="Armada"  VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
             <TextBlock x:Name="AlarmIndicator"   HorizontalAlignment="Left" Margin="215,55,0,0"  TextWrapping="Wrap" Text="Alarma"  VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
             <TextBlock x:Name="BatteryIndicator" HorizontalAlignment="Left" Margin="215,80,0,0"  TextWrapping="Wrap" Text="Batería" VerticalAlignment="Top" FontSize="16" FontFamily="OCR A Extended"/>
