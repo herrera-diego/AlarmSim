@@ -20,6 +20,10 @@ namespace SistSeguridad.TaskScheduling
 
         private bool ChangePass;
 
+        private bool BatteryControl;
+
+        private bool AlarmTriggered;
+
         public string Mode
         {
             get;set;
@@ -113,13 +117,24 @@ namespace SistSeguridad.TaskScheduling
             if ((Mode == "0") || (Mode == e.Zone.ToString()))
             {
                 ExecUIMethod(SystemDisplay.EnableAlarm);
+                AlarmTriggered = true;
             }
 
         }
 
-        public  void ProcessBatteryAlarm()
+        public  void ProcessBatteryAlarm(object sender, EventArgs e)
         {
-
+            BatteryControl = !BatteryControl;
+            if (BatteryControl)
+            {
+                ExecUIMethod(BatteryIndicator.LedOn);
+                ExecUIMethod(SystemDisplay.EnableBattery);
+            }
+            else
+            {
+                ExecUIMethod(BatteryIndicator.LedOff);
+                ExecUIMethod(SystemDisplay.DisableBattery);
+            }
         }
 
         public void ProcessFireAlarm()
@@ -163,6 +178,7 @@ namespace SistSeguridad.TaskScheduling
                         if(PanicTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            AlarmTriggered = true;
                         }
                     }
                     else if (SystemButtonPanel.Fire)
@@ -172,6 +188,7 @@ namespace SistSeguridad.TaskScheduling
                         if (FireTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            AlarmTriggered = true;
                         }
                     }
                     else if(SystemButtonPanel.Escape)
@@ -188,6 +205,14 @@ namespace SistSeguridad.TaskScheduling
                         {
                             ChangePassword(SystemMemory.CurrentMessage);
                             ChangePass = false;
+                        }
+                        else if(AlarmTriggered)
+                        {
+                            if (ValidatePassword(SystemMemory.CurrentMessage))
+                            {                                
+                                ExecUIMethod(SystemDisplay.DisableAlarm);
+                                AlarmTriggered = false;
+                            }
                         }
                         else if (string.IsNullOrEmpty(Mode))
                         {
@@ -216,6 +241,7 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
                                 ExecUIMethod(SystemDisplay.DisableAlarm);
+                                AlarmTriggered = false;
                             }
 
                             SystemMemory.Clear();

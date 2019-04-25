@@ -24,5 +24,12 @@ namespace SistSeguridad.Simulator
         {
             InitializeComponent();
         }
+
+        public event EventHandler BatteryAlert;
+
+        private void OnBattery(object sender, RoutedEventArgs e)
+        {
+            BatteryAlert?.Invoke(this, new EventArgs());
+        }
     }
 }

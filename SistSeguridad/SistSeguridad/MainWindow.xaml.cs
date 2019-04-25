@@ -56,6 +56,7 @@ namespace SistSeguridad
                     case Key.S:
                         AlarmSimulator simulator = new AlarmSimulator();
                         simulator.AlarmActivated += MainScheduler.ProcessSensorAlarm;
+                        simulator.BatteryAlert += MainScheduler.ProcessBatteryAlarm;
                         simulator.Show();
                         break;
                     // Other cases ...

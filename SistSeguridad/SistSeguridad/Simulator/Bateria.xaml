@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="30" d:DesignWidth="100">
     <Grid MaxHeight="30" MaxWidth="100">
-        <CheckBox Content="Bateria" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <CheckBox Content="Bateria" HorizontalAlignment="Center" VerticalAlignment="Center" Checked="OnBattery" Unchecked="OnBattery" />
         <Border BorderBrush="Black" BorderThickness="1"/>
     </Grid>
 </UserControl>

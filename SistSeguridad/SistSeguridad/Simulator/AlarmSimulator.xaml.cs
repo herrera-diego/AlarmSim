@@ -27,9 +27,16 @@ namespace SistSeguridad.Simulator
 
         public event EventHandler<AlarmEventArgs> AlarmActivated;
 
+        public event EventHandler BatteryAlert;
+
         private void OnAlarmActivated(object sender, AlarmEventArgs e)
         {
             AlarmActivated?.Invoke(this, e);
+        }
+
+        private void OnBattery(object sender, EventArgs e)
+        {
+            BatteryAlert?.Invoke(this, e);
         }
     }
 }

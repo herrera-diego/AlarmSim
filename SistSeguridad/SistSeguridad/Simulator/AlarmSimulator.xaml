@@ -19,7 +19,7 @@
         <local:Sensor x:Name="Sensor9" SensorName="Sensor 9" Margin="200,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor10" SensorName="Sensor 10" Margin="375,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor11" SensorName="Sensor 11" Margin="550,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
-        <local:Bateria Margin="728,25,64,354"/>
+        <local:Bateria Margin="728,25,64,354" BatteryAlert="OnBattery"/>
 
     </Grid>
 </Window>
