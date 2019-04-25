@@ -38,5 +38,10 @@ namespace SistSeguridad.Simulator
         {
             BatteryAlert?.Invoke(this, e);
         }
+
+        public void ProcessCall(object sender, EventArgs e)
+        {
+            //CallInfo.CallInfo = 
+        }
     }
 }

@@ -256,6 +256,8 @@ namespace SistSeguridad.TaskScheduling
                             if (ValidatePassword(SystemMemory.CurrentMessage))
                             {                                
                                 ExecUIMethod(SystemDisplay.DisableAlarm);
+                                ExecUIMethod(ArmedIndicator.LedOff);
+                                ExecUIMethod(SystemDisplay.DisableArmed);
                                 AlarmTriggered = false;
                             }
                         }
@@ -267,7 +269,7 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(SystemDisplay.EnableArmed);
                                 SystemMemory.CurrentMessage = "Modo " + Mode;
                                 ExecUIMethod(SystemDisplay.Show);
-                                SystemMemory.CurrentMessage = "";
+                                SystemMemory.Clear();
                             }
                             else
                             {

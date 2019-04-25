@@ -70,6 +70,9 @@
     <Compile Include="Simulator\Bateria.xaml.cs">
       <DependentUpon>Bateria.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Simulator\CallDisplay.xaml.cs">
+      <DependentUpon>CallDisplay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Simulator\Sensor.xaml.cs">
       <DependentUpon>Sensor.xaml</DependentUpon>
     </Compile>
@@ -101,6 +104,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Simulator\Bateria.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Simulator\CallDisplay.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -52,7 +52,7 @@ namespace SistSeguridad.UserControls
             MainDisplay.Text = string.Empty;
             if (SharedMemory != null)
             {
-                SharedMemory.CurrentMessage = string.Empty;
+                SharedMemory.Clear();
             }
         }
 
