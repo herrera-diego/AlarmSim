@@ -15,6 +15,8 @@ namespace SistSeguridad.TaskScheduling
 {
     public class Scheduler
     {
+        private long PanicTimer;
+        private long FireTimer;
 
         public string Mode
         {
@@ -47,19 +49,35 @@ namespace SistSeguridad.TaskScheduling
 
         public bool ValidateArmedSequence(string sequence)
         {
-            string strRegex = @"^\d{4}\*";
-            Regex myRegex = new Regex(strRegex, RegexOptions.None);
-
-            foreach (Match myMatch in myRegex.Matches(sequence))
+            if (string.Compare(sequence, SystemMemory.Password + "*") == 0)
             {
-                if (myMatch.Success)
-                {
-                    return true;
-                }
+                Mode = "0";
+                return true;
             }
+            else if(string.Compare(sequence, SystemMemory.Password + "#") == 0)
+            {
+                Mode = "1";
+                return true;
+            }
+            else
+            {
+                Mode = null;
+                return false;
+            }
+        }
 
-            return false;
-        }  
+        public bool ValidatePassword(string sequence)
+        {
+            if (string.Compare(sequence, SystemMemory.Password) == 0)
+            {
+                Mode = null;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
 
         public void Disarm()
         {
@@ -129,26 +147,67 @@ namespace SistSeguridad.TaskScheduling
                 {
                     Thread.Sleep(100);
 
-                    if(SystemButtonPanel.Escape)
+                    if (SystemButtonPanel.Panic)
+                    {
+                        PanicTimer++;
+                    }
+                    else if (SystemButtonPanel.Fire)
+                    {
+                        PanicTimer = 0;
+                    }
+                    else if(SystemButtonPanel.Escape)
                     {
                         ExecUIMethod(SystemDisplay.Clear);
                         SystemMemory.Clear();
                         SystemButtonPanel.Escape = false;
+                        PanicTimer = 0;
+                        FireTimer = 0;
                     }
                     else if (SystemButtonPanel.Enter)
                     {
-                        if (ValidateArmedSequence(SystemMemory.CurrentMessage))
+                        if (string.IsNullOrEmpty(Mode))
                         {
-                            ExecUIMethod(ArmedIndicator.LedOn);
+                            if (ValidateArmedSequence(SystemMemory.CurrentMessage))
+                            {
+                                ExecUIMethod(ArmedIndicator.LedOn);
+                                ExecUIMethod(SystemDisplay.EnableArmed);
+                                SystemMemory.CurrentMessage = "Modo " + Mode;
+                                ExecUIMethod(SystemDisplay.Show);
+                                SystemMemory.CurrentMessage = "";
+                            }
+                            else
+                            {
+                                ExecUIMethod(SystemDisplay.Clear);
+                            }
+                            
+                            SystemMemory.Clear();
+                            SystemButtonPanel.Enter = false;
+                            PanicTimer = 0;
+                            FireTimer = 0;
                         }
-                        SystemMemory.Clear();
-                        SystemButtonPanel.Enter = false;
+                        else
+                        {                           
+                            if (ValidatePassword(SystemMemory.CurrentMessage))
+                            {
+                                ExecUIMethod(ArmedIndicator.LedOff);
+                                ExecUIMethod(SystemDisplay.DisableArmed);
+                            }
+
+                            SystemMemory.Clear();
+                            SystemButtonPanel.Enter = false;
+                            ExecUIMethod(SystemDisplay.Clear);
+                            SystemMemory.CurrentMessage = "";
+                            PanicTimer = 0;
+                            FireTimer = 0;
+                        }
                     }
                     else if (SystemButtonPanel.ButtonPressed)
                     {                                                                 
                         ExecUIMethod(SystemDisplay.Show);
 
                         SystemButtonPanel.ButtonPressed = false;
+                        PanicTimer = 0;
+                        FireTimer = 0;
                     }
 
                 }

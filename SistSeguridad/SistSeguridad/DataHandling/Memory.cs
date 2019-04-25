@@ -8,6 +8,11 @@ namespace SistSeguridad.DataHandling
 {
     public class Memory
     {
+        public Memory()
+        {
+            Password = "1234";
+        }
+
         public bool Updated
         {
             get; set;
@@ -39,7 +44,7 @@ namespace SistSeguridad.DataHandling
             get;set;
         }
 
-        public bool Password
+        public string Password
         {
             get; set;
         }

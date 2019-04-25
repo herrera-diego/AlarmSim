@@ -21,11 +21,11 @@ namespace SistSeguridad.UserControls
         {
             RadialGradientBrush brush = new RadialGradientBrush(new GradientStopCollection
                     {
-                        new GradientStop(Color.FromRgb(0,128,0),0.2),
-                        new GradientStop(Color.FromRgb(173,255,47),0.8)
+                        new GradientStop(Color.FromRgb(0,128,0),0.4),
+                        new GradientStop(Color.FromRgb(173,255,47),1.2)
 
                     });
-
+            //brush.GradientOrigin = new System.Windows.Point(0.2, 0.2);
             Bulb.Fill = brush;
         }
 
@@ -37,7 +37,7 @@ namespace SistSeguridad.UserControls
                         new GradientStop(Color.FromRgb(173,255,47),0)
 
                     });
-
+            //brush.GradientOrigin = new System.Windows.Point(0.2, 0.2);
             Bulb.Fill = brush;
         }
     }

@@ -25,6 +25,11 @@ namespace SistSeguridad.UserControls
         {
             InitializeComponent();
             Clear();
+            DisableAlarm();
+            DisableArmed();
+            DisableBattery();
+            DisableError();
+
         }
 
         public Memory SharedMemory
@@ -45,6 +50,42 @@ namespace SistSeguridad.UserControls
         public void Clear()
         {
             MainDisplay.Text = string.Empty;
+        }
+
+        public void EnableAlarm()
+        {
+            AlarmIndicator.Visibility = Visibility.Visible;
+        }
+        public void DisableAlarm()
+        {
+            AlarmIndicator.Visibility = Visibility.Hidden;
+        }
+
+        public void EnableArmed()
+        {
+            ArmedIndicator.Visibility = Visibility.Visible;
+        }
+        public void DisableArmed()
+        {
+            ArmedIndicator.Visibility = Visibility.Hidden;
+        }
+
+        public void EnableBattery()
+        {
+            BatteryIndicator.Visibility = Visibility.Visible;
+        }
+        public void DisableBattery()
+        {
+            BatteryIndicator.Visibility = Visibility.Hidden;
+        }
+
+        public void EnableError()
+        {
+            ErrorIndicator.Visibility = Visibility.Visible;
+        }
+        public void DisableError()
+        {
+            ErrorIndicator.Visibility = Visibility.Hidden;
         }
     }
 }

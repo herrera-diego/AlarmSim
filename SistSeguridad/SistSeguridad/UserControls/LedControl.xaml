@@ -7,13 +7,21 @@
              mc:Ignorable="d" 
              d:DesignHeight="100" d:DesignWidth="100">
     <Grid>
-        <Ellipse Name="Bulb" HorizontalAlignment="Center" Height="70" Stroke="DarkSlateGray" StrokeThickness="10" VerticalAlignment="Center" Width="70" >
+        <Ellipse Name="Bulb" HorizontalAlignment="Center" Height="70" Stroke="DarkSlateGray" StrokeThickness="2" VerticalAlignment="Center" Width="70">
             <Ellipse.Fill>
                 <RadialGradientBrush>
-                    <GradientStop Color="Green" Offset="0.4"/>
+                    <GradientStop Color="Green" Offset="0.6"/>
                     <GradientStop Color="GreenYellow" Offset="0"/>
                 </RadialGradientBrush>
             </Ellipse.Fill>
+        </Ellipse>
+        <Ellipse x:Name="CornerLight" Margin="2"  Height="70"  VerticalAlignment="Center" Width="70">
+        <Ellipse.Fill>
+            <RadialGradientBrush Center="0.2, 0.2" RadiusX="0.5" RadiusY="0.5">
+                <GradientStop Color="White" Offset="0"/>
+                <GradientStop Color="Transparent" Offset="0.8"/>
+            </RadialGradientBrush>
+        </Ellipse.Fill>
         </Ellipse>
 
     </Grid>

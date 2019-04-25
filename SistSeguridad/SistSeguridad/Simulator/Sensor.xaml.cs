@@ -25,6 +25,7 @@ namespace SistSeguridad.Simulator
             InitializeComponent();
             DataContext = this;
             Zona0.IsChecked = true;
+            Zona1.IsChecked = false;
         }
 
         public string SensorName
