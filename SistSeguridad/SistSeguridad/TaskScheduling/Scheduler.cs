@@ -150,6 +150,10 @@ namespace SistSeguridad.TaskScheduling
                     if (SystemButtonPanel.Panic)
                     {
                         PanicTimer++;
+                        if(PanicTimer >= 20)
+                        {
+                            ExecUIMethod(SystemDisplay.EnableAlarm);
+                        }
                     }
                     else if (SystemButtonPanel.Fire)
                     {

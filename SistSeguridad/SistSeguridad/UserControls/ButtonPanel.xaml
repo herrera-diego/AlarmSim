@@ -21,8 +21,8 @@
         <Button Content="#" HorizontalAlignment="Left" Margin="220,270,0,0" VerticalAlignment="Top" Width="70" Height="60" FontSize="36" FontFamily="Tahoma" FontWeight="Bold" Click="NumberClick"/>
         <Button Content="Esc" HorizontalAlignment="Left" Margin="335,30,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold" Click="EscapeClick"/>
         <Button Content="Enter" HorizontalAlignment="Left" Margin="335,110,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold" Click="EnterClick"/>
-        <Button Content="Panico" HorizontalAlignment="Left" Margin="335,190,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold" Click="PanicClick"/>
-        <Button Content="Bomberos" HorizontalAlignment="Left" Margin="335,270,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold" Click="FireClick"/>
+        <Button Content="Panico" HorizontalAlignment="Left" Margin="335,190,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold"  PreviewMouseDown ="PanicMouseDown" PreviewMouseUp ="PanicMouseUp" />
+        <Button Content="Bomberos" HorizontalAlignment="Left" Margin="335,270,0,0" VerticalAlignment="Top" Width="190" Height="60" FontSize="24" FontFamily="Tahoma" FontWeight="Bold" PreviewMouseDown ="FireMouseDown" PreviewMouseUp ="FireMouseUp"/>
 
     </Grid>
 </UserControl>

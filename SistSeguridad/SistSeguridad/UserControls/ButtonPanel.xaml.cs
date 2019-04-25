@@ -78,13 +78,24 @@ namespace SistSeguridad.UserControls
             Escape = true;
         }
 
-        private void PanicClick(object sender, RoutedEventArgs e)
+        private void FireMouseDown(object sender, MouseButtonEventArgs e)
+        {
+            Fire = true;
+        }
+
+        private void FireMouseUp(object sender, MouseButtonEventArgs e)
+        {
+            Fire = false;
+        }
+
+        private void PanicMouseDown(object sender, MouseButtonEventArgs e)
         {
             Panic = true;
         }
-        private void FireClick(object sender, RoutedEventArgs e)
+
+        private void PanicMouseUp(object sender, MouseButtonEventArgs e)
         {
-            Fire = true;
+            Panic = false;
         }
     }
 }
