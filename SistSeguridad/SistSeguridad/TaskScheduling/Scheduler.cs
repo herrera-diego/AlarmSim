@@ -105,11 +105,6 @@ namespace SistSeguridad.TaskScheduling
                 return false;
             }
         }
-
-        public void Disarm()
-        {
-
-        }
         
 
 
@@ -151,6 +146,7 @@ namespace SistSeguridad.TaskScheduling
                 }
                 else
                 {
+                    ExecUIMethod(SystemSoundPlayer.ActivateAlarm);
                     ExecUIMethod(SystemDisplay.EnableAlarm);                   
                 }
             }
@@ -282,7 +278,12 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(SystemDisplay.DisableArmed);
                                 ExecUIMethod(SystemDisplay.Clear);
                                 AlarmTriggered = false;
-                                timer.Stop();                            }
+
+                                if (timer != null)
+                                {
+                                    timer.Stop();
+                                }
+                            }
                         }
                         else if (string.IsNullOrEmpty(Mode))
                         {
