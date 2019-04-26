@@ -1,4 +1,5 @@
 ﻿using SistSeguridad.DataHandling;
+using SistSeguridad.InputOutput;
 using SistSeguridad.Simulator;
 using SistSeguridad.UserControls;
 using System;
@@ -28,6 +29,11 @@ namespace SistSeguridad.TaskScheduling
 
         private System.Timers.Timer timer;
 
+        public Scheduler()
+        {
+            SystemSoundPlayer = new AudioAlertHandler();
+        }
+
         public string Mode
         {
             get;set;
@@ -55,6 +61,11 @@ namespace SistSeguridad.TaskScheduling
         public Display SystemDisplay
         {
             get; set;
+        }
+
+        public AudioAlertHandler SystemSoundPlayer
+        {
+            get;set;
         }
 
         public bool ValidateArmedSequence(string sequence)
@@ -135,6 +146,8 @@ namespace SistSeguridad.TaskScheduling
 
                     timer.Enabled = true;
 
+                    ExecUIMethod(SystemSoundPlayer.StartSmallAlert);
+
                 }
                 else
                 {
@@ -147,6 +160,8 @@ namespace SistSeguridad.TaskScheduling
         private void OnTimedEvent(object sender, ElapsedEventArgs e)
         {
             ExecUIMethod(SystemDisplay.EnableAlarm);
+            ExecUIMethod(SystemSoundPlayer.StopSmallAlert);
+            ExecUIMethod(SystemSoundPlayer.ActivateAlarm);
             AlarmTriggered = true;
         }
 
@@ -163,25 +178,6 @@ namespace SistSeguridad.TaskScheduling
                 ExecUIMethod(BatteryIndicator.LedOff);
                 ExecUIMethod(SystemDisplay.DisableBattery);
             }
-        }
-
-        public void ProcessFireAlarm()
-        {
-
-        }
-        public void ProcessPanicAlarm()
-        {
-
-        }
-
-        public void ProcessDamageAlarm()
-        {
-
-        }
-
-        public void StartTimer(int time)
-        {
-
         }
 
         private void ExecUIMethod(Action method)
@@ -208,6 +204,7 @@ namespace SistSeguridad.TaskScheduling
                         if(PanicTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            ExecUIMethod(SystemSoundPlayer.ActivateAlarm);                            
                             ExecUIMethod(SystemDisplay.DisableError);
                             AlarmTriggered = true;
                         }
@@ -219,6 +216,7 @@ namespace SistSeguridad.TaskScheduling
                         if (FireTimer >= 20)
                         {
                             ExecUIMethod(SystemDisplay.EnableAlarm);
+                            ExecUIMethod(SystemSoundPlayer.ActivateAlarm);
                             ExecUIMethod(SystemDisplay.DisableError);
                             AlarmTriggered = true;
                         }
@@ -279,6 +277,7 @@ namespace SistSeguridad.TaskScheduling
                             if (ValidatePassword(SystemMemory.CurrentMessage))
                             {                                
                                 ExecUIMethod(SystemDisplay.DisableAlarm);
+                                ExecUIMethod(SystemSoundPlayer.DeactivateAlarm);
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
                                 ExecUIMethod(SystemDisplay.Clear);
