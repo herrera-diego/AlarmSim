@@ -8,6 +8,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -24,6 +25,8 @@ namespace SistSeguridad.TaskScheduling
         private bool BatteryControl;
 
         private bool AlarmTriggered;
+
+        private System.Timers.Timer timer;
 
         public string Mode
         {
@@ -121,10 +124,30 @@ namespace SistSeguridad.TaskScheduling
         {
             if ((Mode == "0") || (Mode == e.Zone.ToString()))
             {
-                ExecUIMethod(SystemDisplay.EnableAlarm);
                 AlarmTriggered = true;
+
+                if (e.Name == "Sensor 0")
+                {
+                    timer = new System.Timers.Timer(30000);
+
+                    // Hook up the Elapsed event for the timer.
+                    timer.Elapsed += OnTimedEvent;
+
+                    timer.Enabled = true;
+
+                }
+                else
+                {
+                    ExecUIMethod(SystemDisplay.EnableAlarm);                   
+                }
             }
 
+        }
+
+        private void OnTimedEvent(object sender, ElapsedEventArgs e)
+        {
+            ExecUIMethod(SystemDisplay.EnableAlarm);
+            AlarmTriggered = true;
         }
 
         public  void ProcessBatteryAlarm(object sender, EventArgs e)
@@ -258,8 +281,9 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(SystemDisplay.DisableAlarm);
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
+                                ExecUIMethod(SystemDisplay.Clear);
                                 AlarmTriggered = false;
-                            }
+                                timer.Stop();                            }
                         }
                         else if (string.IsNullOrEmpty(Mode))
                         {

@@ -42,6 +42,12 @@ namespace SistSeguridad.Simulator
             
         }
 
+        public CallInfo Information
+        { get; set; }
+    }
+
+    public class CallInfo
+    {
         public string UserNumber
         {
             set; get;
@@ -76,9 +82,5 @@ namespace SistSeguridad.Simulator
         {
             get; set;
         }
-
-
-
-
     }
 }
