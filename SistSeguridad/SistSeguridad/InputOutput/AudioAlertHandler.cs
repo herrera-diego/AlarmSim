@@ -10,9 +10,11 @@ namespace SistSeguridad.InputOutput
     public class AudioAlertHandler
     {
         private SoundPlayer AlertPlayer = new SoundPlayer();
-        private SoundPlayer AlarmPlayer = new SoundPlayer();
-        private readonly string AlarmFile = @"InputOutput\AudioFiles\AlarmSound.wav";
-        private readonly string AlertFile = @"InputOutput\AudioFiles\AlertSound.wav";
+        private SoundPlayer AlarmPlayer = new SoundPlayer(); 
+        private readonly string AlarmFile = AppDomain.CurrentDomain.BaseDirectory
+                                            + @"InputOutput\AudioFiles\AlarmSound.wav";
+        private readonly string AlertFile = AppDomain.CurrentDomain.BaseDirectory
+                                            + @"InputOutput\AudioFiles\AlertSound.wav";
 
         public AudioAlertHandler()
         {           
