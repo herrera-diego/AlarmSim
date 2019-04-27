@@ -29,7 +29,7 @@ namespace UnitTest
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
     public partial class UIMap
     {
-        public static readonly int WaitTime = 250;
+        public static readonly int WaitTime = 750;
 
         /// <summary>
         /// Rivera_AbrirVentanaSimulador - Use 'Rivera_AbrirVentanaSimuladorParams' to pass parameters into this method.
@@ -586,6 +586,44 @@ namespace UnitTest
             Mouse.Click(uIEnterButton, new Point(116, 25));
         }
         
+        /// <summary>
+        /// Rivera_AssertLcdError - Use 'Rivera_AssertLcdErrorExpectedValues' to pass parameters into this method.
+        /// </summary>
+        public void Rivera_AssertLcdErrorOn()
+        {
+            #region Variable Declarations
+            WpfText uIErrorText = this.UIMainWindowWindow2.UISystemDisplayCustom.UIErrorText;
+            #endregion
+
+            System.Threading.Thread.Sleep(WaitTime);
+
+            Point p = new Point();
+            bool isVisible = uIErrorText.TryGetClickablePoint(out p);
+            if (isVisible == false)
+            {
+                Assert.Fail("Error deberia de estar encendido");
+            }
+        }
+
+        /// <summary>
+        /// Rivera_AssertLcdError - Use 'Rivera_AssertLcdErrorExpectedValues' to pass parameters into this method.
+        /// </summary>
+        public void Rivera_AssertLcdErrorOff()
+        {
+            #region Variable Declarations
+            WpfText uIErrorText = this.UIMainWindowWindow2.UISystemDisplayCustom.UIErrorText;
+            #endregion
+
+            System.Threading.Thread.Sleep(WaitTime);
+
+            Point p = new Point();
+            bool isVisible = uIErrorText.TryGetClickablePoint(out p);
+            if (isVisible == true)
+            {
+                Assert.Fail("Error deberia de estar apagado");
+            }
+        }
+
         #region Properties
         public virtual Rivera_AbrirVentanaSimuladorParams Rivera_AbrirVentanaSimuladorParams
         {
@@ -671,6 +709,18 @@ namespace UnitTest
             }
         }
         
+        public virtual Rivera_AssertLcdErrorExpectedValues Rivera_AssertLcdErrorExpectedValues
+        {
+            get
+            {
+                if ((this.mRivera_AssertLcdErrorExpectedValues == null))
+                {
+                    this.mRivera_AssertLcdErrorExpectedValues = new Rivera_AssertLcdErrorExpectedValues();
+                }
+                return this.mRivera_AssertLcdErrorExpectedValues;
+            }
+        }
+        
         public UIMainWindowWindow UIMainWindowWindow
         {
             get
@@ -746,6 +796,8 @@ namespace UnitTest
         private Rivera_AssertLcdArmadoOffExpectedValues mRivera_AssertLcdArmadoOffExpectedValues;
         
         private Rivera_AssertLcdAlarmaOffExpectedValues mRivera_AssertLcdAlarmaOffExpectedValues;
+        
+        private Rivera_AssertLcdErrorExpectedValues mRivera_AssertLcdErrorExpectedValues;
         
         private UIMainWindowWindow mUIMainWindowWindow;
         
@@ -861,6 +913,21 @@ namespace UnitTest
         /// Verify that the 'DisplayText' property of 'Alarma' label equals 'Alarma'
         /// </summary>
         public string UIAlarmaTextDisplayText = "Alarma";
+        #endregion
+    }
+    
+    /// <summary>
+    /// Parameters to be passed into 'Rivera_AssertLcdError'
+    /// </summary>
+    [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
+    public class Rivera_AssertLcdErrorExpectedValues
+    {
+        
+        #region Fields
+        /// <summary>
+        /// Verify that the 'DisplayText' property of 'Error' label equals 'Error'
+        /// </summary>
+        public string UIErrorTextDisplayText = "Error";
         #endregion
     }
     
@@ -1402,12 +1469,30 @@ namespace UnitTest
                 return this.mUIArmadaText;
             }
         }
+        
+        public WpfText UIErrorText
+        {
+            get
+            {
+                if ((this.mUIErrorText == null))
+                {
+                    this.mUIErrorText = new WpfText(this);
+                    #region Search Criteria
+                    this.mUIErrorText.SearchProperties[WpfText.PropertyNames.AutomationId] = "ErrorIndicator";
+                    this.mUIErrorText.WindowTitles.Add("MainWindow");
+                    #endregion
+                }
+                return this.mUIErrorText;
+            }
+        }
         #endregion
         
         #region Fields
         private WpfText mUIAlarmaText;
         
         private WpfText mUIArmadaText;
+        
+        private WpfText mUIErrorText;
         #endregion
     }
 }
