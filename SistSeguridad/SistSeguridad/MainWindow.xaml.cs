@@ -27,6 +27,7 @@ namespace SistSeguridad
     {
         private Scheduler MainScheduler;
         private Memory MainMemory;
+        private AlarmSimulator Simulator;
 
         public MainWindow()
         {
@@ -54,11 +55,14 @@ namespace SistSeguridad
                 switch (e.Key)
                 {
                     case Key.S:
-                        AlarmSimulator simulator = new AlarmSimulator();
-                        simulator.AlarmActivated += MainScheduler.ProcessSensorAlarm;
-                        simulator.BatteryAlert += MainScheduler.ProcessBatteryAlarm;
-                        MainScheduler.AlarmActivated += simulator.ProcessCall;
-                        simulator.Show();
+                        if ((Simulator == null) || (!Simulator.IsLoaded))
+                        {
+                            Simulator = new AlarmSimulator();
+                            Simulator.AlarmActivated += MainScheduler.ProcessSensorAlarm;
+                            Simulator.BatteryAlert += MainScheduler.ProcessBatteryAlarm;
+                            MainScheduler.AlarmActivated += Simulator.ProcessCall;
+                            Simulator.Show();
+                        }
                         break;
                     // Other cases ...
                     default:
