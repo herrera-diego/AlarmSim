@@ -36,6 +36,9 @@ namespace SistSeguridad
             MainScheduler = new Scheduler();
             MainMemory = new Memory();
 
+            MainMemory.CompanyPhoneNumber = "2509-3000";
+            MainMemory.UserNumber = "500317";
+
             MainScheduler.SystemMemory = MainMemory;
             SystemButtonPanel.SharedMemory = MainMemory;
             SystemDisplay.SharedMemory = MainMemory;
