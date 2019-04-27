@@ -44,6 +44,16 @@ namespace SistSeguridad.DataHandling
             get;set;
         }
 
+        public string ActiveSensor
+        {
+            get; set;
+        }
+
+        public string ActiveZone
+        {
+            get; set;
+        }
+
         public string Password
         {
             get; set;
@@ -58,6 +68,14 @@ namespace SistSeguridad.DataHandling
         {
             CurrentMessage = string.Empty;
             Updated = false;
+        }
+
+        public void ClearAlarms()
+        {
+            ActiveSensor = string.Empty;
+            ActiveZone = string.Empty;
+            Panic = false;
+            Fire = false;
         }
     }
 }

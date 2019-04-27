@@ -21,7 +21,7 @@
         <local:Sensor x:Name="Sensor11" SensorName="Sensor 11" Margin="550,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Bateria Margin="728,25,64,354" BatteryAlert="OnBattery"/>
         <TextBlock Text="Call Display" Margin="728,139,93,260"/>
-        <local:CallDisplay Margin="728,167,10,135"/>
+        <local:CallDisplay x:Name="Caller" Margin="728,167,10,135"/>
 
     </Grid>
 </Window>

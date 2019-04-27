@@ -39,14 +39,14 @@ namespace SistSeguridad.Simulator
             BatteryAlert?.Invoke(this, e);
         }
 
-        public void ProcessCall(object sender, EventArgs e)
+        public void ProcessCall(object sender, CallEventArgs e)
         {
-            //CallInfo.CallInfo = 
-        }
-
-        private void CallDisplay_Loaded(object sender, RoutedEventArgs e)
-        {
-
+            Caller.CompanyPhone = e.Information.CompanyPhoneNumber;
+            Caller.UserNumber = e.Information.UserNumber;
+            Caller.SensorName = e.Information.SensorName;
+            Caller.Zone = e.Information.Zone;
+            Caller.Panic = e.Information.Panic;
+            Caller.Fire = e.Information.Fire;
         }
     }
 }

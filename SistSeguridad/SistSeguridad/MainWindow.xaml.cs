@@ -57,6 +57,7 @@ namespace SistSeguridad
                         AlarmSimulator simulator = new AlarmSimulator();
                         simulator.AlarmActivated += MainScheduler.ProcessSensorAlarm;
                         simulator.BatteryAlert += MainScheduler.ProcessBatteryAlarm;
+                        MainScheduler.AlarmActivated += simulator.ProcessCall;
                         simulator.Show();
                         break;
                     // Other cases ...

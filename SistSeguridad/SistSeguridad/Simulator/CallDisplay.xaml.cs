@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SistSeguridad.Communications;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -95,36 +96,5 @@ namespace SistSeguridad.Simulator
         { get; set; }
     }
 
-    public class CallInfo
-    {
-        public string UserNumber
-        {
-            set; get;
-        }
-
-        public string CompanyPhoneNumber
-        {
-            get; set;
-        }
-
-        public bool Fire
-        {
-            get; set;
-        }
-
-        public bool Panic
-        {
-            get; set;
-        }
-
-        public string SensorName
-        {
-            get; set;
-        }
-
-        public string Zone
-        {
-            get; set;
-        }
-    }
+    
 }
