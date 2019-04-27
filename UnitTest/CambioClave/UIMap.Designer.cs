@@ -29,7 +29,7 @@ namespace UnitTest
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
     public partial class UIMap
     {
-        public static readonly int WaitTime = 750;
+        public static readonly int WaitTime = 250;
 
         /// <summary>
         /// Rivera_AbrirVentanaSimulador - Use 'Rivera_AbrirVentanaSimuladorParams' to pass parameters into this method.
@@ -42,6 +42,7 @@ namespace UnitTest
             #endregion
 
             // Click 'MainWindow' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uIMainWindowTitleBar, new Point(522, 10));
 
             // Type 'Control + s' in 'MainWindow' window
@@ -59,6 +60,7 @@ namespace UnitTest
             #endregion
 
             // Click 'Simulator' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uISimulatorTitleBar, new Point(419, 8));
 
             // Click 'Close' button
@@ -76,6 +78,7 @@ namespace UnitTest
             #endregion
 
             // Click 'Simulator' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uISimulatorTitleBar, new Point(325, 5));
 
             // Select '1' radio button
@@ -93,6 +96,7 @@ namespace UnitTest
             #endregion
 
             // Click 'Simulator' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uISimulatorTitleBar, new Point(360, 12));
 
             // Select '0' radio button
@@ -110,6 +114,7 @@ namespace UnitTest
             #endregion
 
             // Click 'Simulator' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uISimulatorTitleBar, new Point(453, 12));
 
             // Select 'Activate' check box
@@ -127,6 +132,7 @@ namespace UnitTest
             #endregion
 
             // Click 'Simulator' title bar
+            System.Threading.Thread.Sleep(WaitTime);
             Mouse.Click(uISimulatorTitleBar, new Point(385, 9));
 
             // Clear 'Activate' check box

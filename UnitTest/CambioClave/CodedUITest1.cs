@@ -9,6 +9,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Microsoft.VisualStudio.TestTools.UITest.Extension;
 using Keyboard = Microsoft.VisualStudio.TestTools.UITesting.Keyboard;
 using System.Diagnostics;
+using System.IO;
 
 namespace UnitTest
 {
@@ -18,6 +19,8 @@ namespace UnitTest
     [CodedUITest]
     public class CodedUITest1
     {
+        internal static Process myProcess;
+
         public CodedUITest1()
         {
         }
@@ -25,21 +28,20 @@ namespace UnitTest
         [ClassInitialize]
         public static void StartApp(TestContext testContext)
         {
-            // Prepare the process to run
-            ProcessStartInfo start = new ProcessStartInfo();
-            // Enter the executable to run, including the complete path
+            var appPath = Directory.GetCurrentDirectory();
+            appPath = appPath.Remove(appPath.LastIndexOf("TestResults"))
+                      + @"SistSeguridad\bin\Debug\SistSeguridad.exe";
 
-            // TODO: Change to a relative path if possible
-            start.FileName = @"C:\Users\riveraes\GIT\Personal\AlarmSimulator\SistSeguridad\SistSeguridad\bin\Debug\SistSeguridad.exe";
-            Process.Start(start);
+            ProcessStartInfo start = new ProcessStartInfo();
+            start.FileName = appPath;
+            myProcess = Process.Start(start);
             System.Threading.Thread.Sleep(2000);
         }
 
         [ClassCleanup]
         public static void CloseApp()
         {
-            // Wait 5 sec before closing both the UnitTest and "SistSeguridad.exe"
-            System.Threading.Thread.Sleep(5000);
+            myProcess.Close();
         }
 
         [TestMethod]
@@ -118,6 +120,26 @@ namespace UnitTest
             // Verificar indicadores en el LCD de alarma y armado
             this.UIMap.Rivera_AssertLcdArmadoOff();
             this.UIMap.Rivera_AssertLcdAlarmaOff();
+
+            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+        }
+
+        [TestMethod]
+        public void PruebaCambioClave3_FalloCambioDeClave()
+        {
+            // Verificar estado inicial
+            this.UIMap.Rivera_CleanLcd();
+            this.UIMap.Rivera_AssertLcdArmadoOff();
+            this.UIMap.Rivera_AssertLcdAlarmaOff();
+
+            // Configurar sensores y zonas
+            this.UIMap.Rivera_AbrirVentanaSimulador();
+            this.UIMap.Rivera_AsignarSensor1Zona0();
+
+            // Cambio de Clave
+            this.UIMap.Rivera_CambioClave_DigitarClavePorDefecto();
+            this.UIMap.Rivera_DigitarClaveModificada();
+            this.UIMap.Rivera_DigitarClavePorDefecto();
 
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
         }
