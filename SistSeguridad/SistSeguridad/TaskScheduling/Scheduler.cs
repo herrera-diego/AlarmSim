@@ -88,6 +88,14 @@ namespace SistSeguridad.TaskScheduling
             AlarmActivated?.Invoke(this, eventArgs);
         }
 
+        private void OnAlarmDeactivated()
+        {
+           
+            CallEventArgs eventArgs = new CallEventArgs();
+            eventArgs.Information = new CallInfo();
+            AlarmActivated?.Invoke(this, eventArgs);
+        }
+
         public bool ValidateArmedSequence(string sequence)
         {
             if (string.Compare(sequence, SystemMemory.Password + "*") == 0)
@@ -274,6 +282,7 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
                                 SystemMemory.ClearAlarms();
+                                ExecUIMethod(OnAlarmDeactivated);
 
                                 AlarmTriggered = false;    
                                 

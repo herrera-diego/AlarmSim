@@ -3,7 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:SistSeguridad.Simulator"
+        xmlns:local="clr-namespace:SistSeguridad.Simulator"       
         mc:Ignorable="d"
         Title="Simulator"  Height="450" Width="950" MaxHeight="450" MaxWidth="950">
     <Grid Background="LightGray">
@@ -20,8 +20,7 @@
         <local:Sensor x:Name="Sensor10" SensorName="Sensor 10" Margin="375,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor11" SensorName="Sensor 11" Margin="550,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Bateria Margin="728,25,64,354" BatteryAlert="OnBattery"/>
-        <TextBlock Text="Call Display" Margin="728,139,93,252"/>
+        <Label x:Name="CallerLabel" Margin="728,150,93,241" Content="Call Info: "/>
         <local:CallDisplay x:Name="Caller" Margin="728,167,10,135"/>
-
     </Grid>
 </Window>
