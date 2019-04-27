@@ -276,7 +276,7 @@ namespace SistSeguridad.TaskScheduling
                                 ExecUIMethod(SystemSoundPlayer.DeactivateAlarm);
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
-                                ExecUIMethod(SystemDisplay.Clear);
+                                
                                 AlarmTriggered = false;
 
                                 if (timer != null)
@@ -284,6 +284,12 @@ namespace SistSeguridad.TaskScheduling
                                     timer.Stop();
                                 }
                             }
+                            else
+                            {
+                                ExecUIMethod(SystemDisplay.EnableError);
+                            }
+
+                            ExecUIMethod(SystemDisplay.Clear);
                         }
                         else if (string.IsNullOrEmpty(Mode))
                         {

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SistSeguridad.Simulator"
         mc:Ignorable="d"
-        Title="Simulator" Height="450" Width="900">
+        Title="Simulator"  Height="450" Width="950" MaxHeight="450" MaxWidth="950">
     <Grid Background="LightGray">
         <local:Sensor x:Name="Sensor0" SensorName="Sensor 0" Margin="25,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left"  AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor1" SensorName="Sensor 1" Margin="200,25,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
@@ -20,8 +20,8 @@
         <local:Sensor x:Name="Sensor10" SensorName="Sensor 10" Margin="375,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Sensor x:Name="Sensor11" SensorName="Sensor 11" Margin="550,275,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" AlarmActivated="OnAlarmActivated"/>
         <local:Bateria Margin="728,25,64,354" BatteryAlert="OnBattery"/>
-        <TextBlock Text="Call Display" Margin="728,142,93,257"/>
-        <local:CallDisplay x:Name="CallInfo" Margin="728,162,14,182" />
+        <TextBlock Text="Call Display" Margin="728,139,93,260"/>
+        <local:CallDisplay Margin="728,167,10,135"/>
 
     </Grid>
 </Window>

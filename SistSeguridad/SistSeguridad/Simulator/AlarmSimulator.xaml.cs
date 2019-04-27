@@ -43,5 +43,10 @@ namespace SistSeguridad.Simulator
         {
             //CallInfo.CallInfo = 
         }
+
+        private void CallDisplay_Loaded(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

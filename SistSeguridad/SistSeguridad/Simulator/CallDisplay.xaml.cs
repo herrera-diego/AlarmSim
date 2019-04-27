@@ -22,16 +22,65 @@ namespace SistSeguridad.Simulator
     {
         public CallDisplay()
         {
+            Panic = false;
+            Fire = false;
             InitializeComponent();
+            this.DataContext = this;
+
         }
 
-        public static readonly DependencyProperty TextBlockTextProperty =
-           DependencyProperty.Register("CallInfo", typeof(string), typeof(CallDisplay), new UIPropertyMetadata(""));
+        public static readonly DependencyProperty CompanyPhoneProperty =
+           DependencyProperty.Register("CompanyPhone", typeof(string), typeof(CallDisplay), new UIPropertyMetadata(""));
 
-        public string CallInfo
+        public string CompanyPhone
         {
-            get { return (string)GetValue(TextBlockTextProperty); }
-            set { SetValue(TextBlockTextProperty, value); }
+            get { return (string)GetValue(CompanyPhoneProperty); }
+            set { SetValue(CompanyPhoneProperty, value); }
+        }
+
+        public static readonly DependencyProperty UserNumberProperty =
+          DependencyProperty.Register("UserNumber", typeof(string), typeof(CallDisplay), new UIPropertyMetadata(""));
+
+        public string UserNumber
+        {
+            get { return (string)GetValue(UserNumberProperty); }
+            set { SetValue(UserNumberProperty, value); }
+        }
+
+        public static readonly DependencyProperty SensorNameProperty =
+          DependencyProperty.Register("SensorName", typeof(string), typeof(CallDisplay), new UIPropertyMetadata(""));
+
+        public string SensorName
+        {
+            get { return (string)GetValue(SensorNameProperty); }
+            set { SetValue(SensorNameProperty, value); }
+        }
+
+        public static readonly DependencyProperty ZoneProperty =
+          DependencyProperty.Register("Zone", typeof(string), typeof(CallDisplay), new UIPropertyMetadata(""));
+
+        public string Zone
+        {
+            get { return (string)GetValue(ZoneProperty); }
+            set { SetValue(ZoneProperty, value); }
+        }
+
+        public static readonly DependencyProperty PanicProperty =
+          DependencyProperty.Register("Panic", typeof(bool), typeof(CallDisplay), new UIPropertyMetadata(false));
+
+        public bool Panic
+        {
+            get { return (bool)GetValue(PanicProperty); }
+            set { SetValue(PanicProperty, value); }
+        }
+
+        public static readonly DependencyProperty FireProperty =
+          DependencyProperty.Register("Fire", typeof(bool), typeof(CallDisplay), new UIPropertyMetadata(false));
+
+        public bool Fire
+        {
+            get { return (bool)GetValue(FireProperty); }
+            set { SetValue(FireProperty, value); }
         }
     }
 
@@ -64,11 +113,6 @@ namespace SistSeguridad.Simulator
         }
 
         public bool Panic
-        {
-            get; set;
-        }
-
-        public bool Alarm
         {
             get; set;
         }

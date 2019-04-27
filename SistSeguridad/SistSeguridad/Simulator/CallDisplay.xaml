@@ -5,9 +5,19 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SistSeguridad.Simulator"
              mc:Ignorable="d" 
-            d:DesignHeight="75" d:DesignWidth="150">
-    <Grid MaxHeight="75" MaxWidth="150">
-        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Center"  Text="{Binding Path=CallInfo}" Margin="20,0,0,0" Width="110" />
-        <Border BorderBrush="Black" BorderThickness="1"/>
+            d:DesignHeight="110" d:DesignWidth="220">
+    <Grid MaxHeight="110" MaxWidth="220">
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="Company Phone: " Margin="3,0,0,0" Width="95" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="{Binding Path=CompanyPhone}" Margin="100,0,0,0" Width="110" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="User Number: " Margin="3,15,0,0" Width="75" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="{Binding Path=UserNumber}" Margin="80,15,0,0" Width="110" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="Sensor: " Margin="3,30,0,0" Width="40" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="{Binding Path=SensorName}" Margin="45,30,0,0" Width="110" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="Zone: " Margin="3,45,0,0" Width="35" />
+        <TextBlock HorizontalAlignment="Left"  TextWrapping="Wrap" VerticalAlignment="Top"  Text="{Binding Path=Zone}" Margin="40,45,0,0" Width="110" />
+        <CheckBox Content="Panic" HorizontalAlignment="Left" Margin="3,65,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=Panic, Mode=TwoWay}"/>
+        <CheckBox Content="Fire" HorizontalAlignment="Left" Margin="3,85,0,0" VerticalAlignment="Top" IsChecked="{Binding Path=Fire, Mode=TwoWay}"/>
+        <Border BorderBrush="Black" BorderThickness="1" />
+        
     </Grid>
 </UserControl>
