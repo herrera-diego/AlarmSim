@@ -29,7 +29,7 @@ namespace UnitTest
     [GeneratedCode("Coded UITest Builder", "15.0.26208.0")]
     public partial class UIMap
     {
-        public static readonly int WaitTime = 750;
+        public static readonly int WaitTime = 0;
 
         /// <summary>
         /// Rivera_AbrirVentanaSimulador - Use 'Rivera_AbrirVentanaSimuladorParams' to pass parameters into this method.

@@ -41,7 +41,7 @@ namespace UnitTest
         [TestCleanup]
         public void CloseApp()
         {
-            myProcess.Close();
+            myProcess.CloseMainWindow();
             System.Threading.Thread.Sleep(2000);
         }
 
@@ -283,6 +283,25 @@ namespace UnitTest
 
             // Verificar indicadores en el LCD de alarma y armado
             this.UIMap.Rivera_AssertLcdArmadoOn();
+            this.UIMap.Rivera_AssertLcdAlarmaOn();
+
+            // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
+        }
+
+        [TestMethod]
+        public void PruebaCambioClave10_ClaveIncorrecta3Veces()
+        {
+            // Verificar que no hay alarma
+            this.UIMap.Rivera_AssertLcdAlarmaOff();
+
+            // Fallar la clave 3 veces
+            this.UIMap.Rivera_DigitarArmadoZona0ClavePorDefecto();
+            this.UIMap.Rivera_DigitarClaveModificada();
+            this.UIMap.Rivera_DigitarClaveModificada();
+            this.UIMap.Rivera_DigitarClaveModificada();
+            this.UIMap.Rivera_DigitarClaveModificada();
+
+            // Verificar que se activo alarma
             this.UIMap.Rivera_AssertLcdAlarmaOn();
 
             // To generate code for this test, select "Generate Code for Coded UI Test" from the shortcut menu and select one of the menu items.
