@@ -295,20 +295,11 @@ namespace UnitTest
             this.UIMap.Rivera_AssertLcdAlarmaOff();
 
             // Fallar la clave 3 veces
-            // Cambio de Clave
-            this.UIMap.Rivera_CambioClave_DigitarClavePorDefecto();
-            // Fallo 1
+            this.UIMap.Rivera_DigitarArmadoZona0ClavePorDefecto();
             this.UIMap.Rivera_DigitarClaveModificada();
-            this.UIMap.Rivera_DigitarClavePorDefecto();
-            // Fallo 2
             this.UIMap.Rivera_DigitarClaveModificada();
-            this.UIMap.Rivera_DigitarClavePorDefecto();
-            // Fallo 3
             this.UIMap.Rivera_DigitarClaveModificada();
-            this.UIMap.Rivera_DigitarClavePorDefecto();
-            // Fallo 4
             this.UIMap.Rivera_DigitarClaveModificada();
-            this.UIMap.Rivera_DigitarClavePorDefecto();
 
             // Verificar que se activo alarma
             this.UIMap.Rivera_AssertLcdAlarmaOn();
