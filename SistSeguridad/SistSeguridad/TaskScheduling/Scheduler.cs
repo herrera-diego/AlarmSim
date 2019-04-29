@@ -28,6 +28,8 @@ namespace SistSeguridad.TaskScheduling
 
         private bool AlarmTriggered;
 
+        private int passCounter = 0;
+
         private System.Timers.Timer timer;
 
         public Scheduler()
@@ -354,13 +356,31 @@ namespace SistSeguridad.TaskScheduling
                             FireTimer = 0;
                         }
                         else
-                        {                           
+                        {
                             if (ValidatePassword(SystemMemory.CurrentMessage))
                             {
                                 ExecUIMethod(ArmedIndicator.LedOff);
                                 ExecUIMethod(SystemDisplay.DisableArmed);
                                 ExecUIMethod(SystemDisplay.DisableAlarm);
                                 AlarmTriggered = false;
+                                passCounter = 0;
+                            }
+                            else
+                            {
+                                ExecUIMethod(SystemDisplay.EnableError);
+                                passCounter++;
+                                if (passCounter>=3)
+                                {
+                                    passCounter = 0;
+                                    ExecUIMethod(SystemDisplay.EnableAlarm);
+                                    ExecUIMethod(SystemSoundPlayer.ActivateAlarm);
+                                    ExecUIMethod(SystemDisplay.DisableError);
+                                    AlarmTriggered = true;
+                                    SystemMemory.ClearAlarms();
+                                    SystemMemory.Panic = false;
+                                    SystemButtonPanel.Panic = false;
+                                    ExecUIMethod(OnAlarmActivated);
+                                }
                             }
 
                             SystemMemory.Clear();
